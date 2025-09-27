@@ -48,6 +48,29 @@ for y in range(n_pixel_y):
         img[x,y]=[255, 255, 255]
 
 
+#L building logic
+L_building = [
+    [1, 0],
+    [1, 0],
+    [1, 1]
+]
+
+block_size = 10
+start_x, start_y = 50, 50
+for row in range(len(L_building)):
+    for col in range(len(L_building[0])):
+        if L_building[row][col] == 1:
+            # calculate the top-left corner of this block
+            x1 = start_x + col * block_size
+            y1 = start_y + row * block_size
+            x2 = x1 + block_size
+            y2 = y1 + block_size
+
+            # fill that block with a color (black)
+            img[y1:y2, x1:x2] = [0, 0, 0]
+
+
+
 b1=Building(50, 100, 10, 10, 2)
 b2=Building(200, 150, 20, 50, 1)
 b3=Building(100, 250, 30, 30, 3)
