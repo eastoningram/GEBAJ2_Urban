@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Urban Planner </title>
+    <link rel="stylesheet" href="{{ url_for( 'static', filename = 'style.css')}}">
+</head>
+<body>
+    
+    <div class="navbar">
+        <a href="{{ url_for('team') }}">Our Team</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <h1>
+        <label> Urban Planner </label>
+    </h1>
+
+    <label> Population </label>
+    <input type = "number" name = "population"> 
+    <label> Area </label>
+    <input type = "number" name = "area">
+    <button type = "submit"> Generate City </button>
+    
+</body>
+</html>
