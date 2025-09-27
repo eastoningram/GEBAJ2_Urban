@@ -20,6 +20,12 @@ def draw_building(b: Building):
     if b.category==1:
         img[b.y:b.y+b.size_y,b.x:b.x+b.size_x] = red
 
+    #logic for creating circle shape
+    elif b.category == 2:
+        center_x = b.x + b.size_x // 2
+        center_y = b.y + b.size_y // 2
+        radius = min(b.size_x, b.size_y) // 2
+        cv2.circle(img, (center_x, center_y), radius, green, -1)
 
 
 
@@ -31,6 +37,9 @@ for y in range(n_pixel_y):
 
 b1=Building(50, 100, 10, 10, 1)
 draw_building(b1)
+#example drawing circle
+b2 = Building(100, 150, 20, 20, 2)
+draw_building(b2)
 
 cv2.imwrite("map.png", img)
 #cv2.imshow("Map", img)
