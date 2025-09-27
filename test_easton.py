@@ -14,11 +14,11 @@ n_pixel_x=300
 img = np.zeros((n_pixel_x, n_pixel_y, 3), dtype=np.uint8)
 
 def draw_building(b: Building):
-    blue=[255, 0, 0]
-    red= [0,255, 0]
-    green=[0, 0, 255]
+    blue =[255, 0, 0]
+    green = [0,255, 0]
+    red =[0, 0, 255]
     if b.category==1:
-        img[b.y:b.y+b.size_y,b.x:b.x+b.size_x]=green
+        img[b.y:b.y+b.size_y,b.x:b.x+b.size_x] = red
 
 
 
