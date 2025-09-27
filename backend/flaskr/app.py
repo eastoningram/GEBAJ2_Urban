@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -13,6 +13,15 @@ def about():
 @app.route('/team')
 def team():
     return "Alex, Griffin, Easton, Ben, Josh^2."
+
+@app.route("/generateCity", methods=["POST"])
+def generateCity(): 
+    data = request.get_json()
+    population = data["population"]
+    area = data["area"]
+    print(population)
+    print(area)
+    return "OK"
 
 if __name__ == "__main__":
     app.run(debug=True)
