@@ -34,7 +34,8 @@ CATEGORY_COLORS = {
     'residential': [0, 255, 0],
     'commerce': [0, 0, 255],
     'industry': [255, 0, 0],
-    'recreation': [128, 128, 128]
+    'recreation': [128, 128, 128],
+    'L': [0, 0, 0]
 }
 
 CATEGORY_INDEX = {
@@ -48,7 +49,10 @@ CATEGORY_INDEX = {
 def draw_buildings(buildings):
     for b in buildings:
         color = CATEGORY_COLORS.get(b.category, [0, 0, 0])
-        img[b.y:b.y+b.size_y, b.x:b.x+b.size_x] = color
+        if b.category == 'L':
+            draw_L_shape(img, L_BUILDING, b.x, b.y, color)
+        else:
+            img[b.y:b.y+b.size_y, b.x:b.x+b.size_x] = color
 
 def draw_road(p1, p2):
     """Draw Manhattan-style road between two points."""
@@ -104,6 +108,35 @@ def connect_nearest(buildings):
             p1, p2 = edge_connect(b, nearest)
             draw_road(p1, p2)
 
+L_BUILDING = [
+    [1, 0],
+    [1, 0],
+    [1, 1]
+]
+BLOCK_SIZE = 10
+
+def draw_L_shape(img, shape_grid, start_x, start_y, color):
+    for row in range(len(shape_grid)):
+        for col in range(len(shape_grid[0])):
+            if shape_grid[row][col] == 1:
+                x1 = start_x + col * BLOCK_SIZE
+                y1 = start_y + row * BLOCK_SIZE
+                x2 = x1 + BLOCK_SIZE
+                y2 = y1 + BLOCK_SIZE
+                img[y1:y2, x1:x2] = color
+
+def rotate_building(building_grid):
+    """Rotate a 2D building grid 90° clockwise."""
+    rows = len(building_grid)
+    cols = len(building_grid[0])
+    rotated = [[0]*rows for _ in range(cols)]
+    for r in range(rows):
+        for c in range(cols):
+            rotated[c][rows - 1 - r] = building_grid[r][c]
+    return rotated
+
+
+
 # ------------------- MAIN -------------------
 def main():
     # Step 1: Get inputs from TownGenerator
@@ -142,7 +175,11 @@ def main():
                         too_close = True
                         break
                 if not too_close:
-                    buildings.append(Building(x, y, size, size, cat))
+
+                    if cat == 'commerce' and random.random() < 0.3:
+                        buildings.append(Building(x, y, 0, 0, 'L'))
+                    else:
+                        buildings.append(Building(x, y, size, size, cat))
                     placed = True
                 attempts += 1
 
