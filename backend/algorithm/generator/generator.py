@@ -1,13 +1,21 @@
+#!/usr/bin/env python3
+
+from generator.building import Building
+
 # class to calculate amount of buildings for the given population
 class TownGenerator: 
     def __init__(self, population, area, categories): 
         self.population = population
         self.area = area
         self.building_categories = categories
+        self.buildings=self.exporter()
     
     # getter to return population
     def getPopulation(self):
         return self.population
+
+    def getBuildings(self):
+        return self.buildings
     
     # setter for population
     def setPopulation(self, value):
@@ -59,6 +67,24 @@ class TownGenerator:
             'avg_people_per_category': avg_people_per_category
 
         }
+
+    def exporter(self):
+        results = self.calculate_buildings()
+        buildings = []
+        cat_idx=1
+        for cat, count in results["category_buildings"].items():
+            for i in range(count):
+                b = Building(
+                    -1, -1, -1, -1,
+                    cat_idx,
+                    results["area_per_building_m2"][cat],
+                    results["avg_people_per_category"][cat]
+                )
+                buildings.append(b)
+            cat_idx=cat_idx+1
+
+        return buildings
+
 
 
 def main():
