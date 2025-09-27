@@ -98,6 +98,5 @@ def main():
         print(f"  {cat.title():<12}: {a:.2f} m2")
 
 
-
 if __name__ == "__main__":
     main()
