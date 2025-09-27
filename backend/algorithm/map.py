@@ -55,6 +55,7 @@ L_building = [
     [1, 1]
 ]
 
+
 block_size = 10
 start_x, start_y = 50, 50
 for row in range(len(L_building)):
