@@ -74,18 +74,7 @@ def connect_nearest(buildings):
             draw_road(c1, nearest)
 
 
-
-
-
-
-
-
-
-
-
-
-# ---- MAIN ----
-if __name__ == "__main__":
+def create_map(population, area)
     # Set image to white
     img[:] = [255, 255, 255]
 
@@ -98,7 +87,7 @@ if __name__ == "__main__":
     }
 
     # Instantiate TownGenerator and get buildings
-    town = TownGenerator(1000, 0.1, categories)
+    town = TownGenerator(population, area, categories)
     buildings = town.buildings
 
     # Randomly assign positions and sizes safely
