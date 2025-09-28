@@ -1,16 +1,47 @@
 body {
+<<<<<<< HEAD
     background: #bad89f;
     font-family: Arial, sans-serif;
     font-size: 20px;
+=======
+>>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
     margin: 0;
-    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(216deg, #4ee2f6, #fe6565);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
 }
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:81% 0%}
+    50%{background-position:20% 100%}
+    100%{background-position:81% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:81% 0%}
+    50%{background-position:20% 100%}
+    100%{background-position:81% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:81% 0%}
+    50%{background-position:20% 100%}
+    100%{background-position:81% 0%}
+}
+
 
 .navbar {
     padding: 12px;
     margin-bottom: 15px;
+<<<<<<< HEAD
     background-color: #45a049;
     text-align: center;
+=======
+>>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
 }
 
 a {
@@ -20,7 +51,11 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+     background: linear-gradient(216deg, #4ee2f6, #fe6565);
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+    transform: scale(1.1) translate(5px, -5px); 
 }
 
 h1 {
@@ -60,6 +95,7 @@ input {
 
 button {
     display: block;
+<<<<<<< HEAD
     padding: 12px 25px;
     background-color: #4CAF50;
     color: white;
@@ -68,12 +104,29 @@ button {
     cursor: pointer;
     margin: 30px auto;
     font-size: 18px;
+=======
+    padding: 10px 20px;
+    background-color: #F8F6F0;
+    color: #000000;
+    border: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 35px auto;
+
+    /* Add transition for smooth animation */
+    transition: all .325s ease-in-out;
+>>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
 }
 
 button:hover {
-    background-color: #45a049;
+    background: linear-gradient(216deg, #4ee2f6, #fe6565);
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+    transform: scale(1.1) translate(5px, -5px); 
 }
 
+<<<<<<< HEAD
 #cityMap {
     margin-top: 20px;
     max-width: 100%;
@@ -81,3 +134,5 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
+=======
+>>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
