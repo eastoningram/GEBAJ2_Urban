@@ -73,6 +73,21 @@ def connect_nearest(buildings):
         if nearest:
             draw_road(c1, nearest)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+
 # ---- MAIN ----
 if __name__ == "__main__":
     # Set image to white
@@ -87,8 +102,8 @@ if __name__ == "__main__":
     }
 
     # Instantiate TownGenerator and get buildings
-    town = TownGenerator(1000, 100, categories)
-    buildings = town.getBuildings()
+    town = TownGenerator(1000, 0.1, categories)
+    buildings = town.buildings
 
     # Randomly assign positions and sizes safely
     for b in buildings:

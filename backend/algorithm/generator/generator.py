@@ -8,82 +8,47 @@ class TownGenerator:
         self.population = population
         self.area = area
         self.building_categories = categories
-        self.buildings=self.exporter()
+        self.buildings = self._generate_buildings()
     
-    # getter to return population
-    def getPopulation(self):
-        return self.population
+    def _generate_buildings(self):
+        # Step 1: footprint multipliers
+        footprint_multipliers = [1 + self.building_categories[cat] * 5 for cat in self.building_categories]
 
-    def getBuildings(self):
-        return self.buildings
-    
-    # setter for population
-    def setPopulation(self, value):
-        if value < 0:
-            raise ValueError("Population cannot be negative")
-        self.population = value
-    
-    # setter for area
-    def setArea(self, value):
-        if value <= 0:
-            raise ValueError("Area must be positive")
-        self.area = value
-    
-    def calculate_buildings(self):
-        # Step 1: relative footprint multipliers for realistic building sizes
-        # Higher number = bigger building footprint
-        footprint_multipliers = {cat: 1 + self.building_categories[cat]*5 for cat in self.building_categories}
-        weighted_sum = sum(self.building_categories[cat] * footprint_multipliers[cat] for cat in self.building_categories)
-
-        # Step 2: total buildings calculated from population and area
-        total_buildings = self.population / (self.area / weighted_sum)
-
-        # Step 3: buildings per category
-        category_buildings = {cat: total_buildings * self.building_categories[cat] for cat in self.building_categories}
-
-        avg_people_per_category = {
-            cat: self.population * self.building_categories[cat] / category_buildings[cat]
+        # Step 2: weighted sum of categories
+        weighted_sum = sum(
+            self.building_categories[cat] * (1 + self.building_categories[cat] * 5)
             for cat in self.building_categories
-        }
+        )
 
-        # Step 4: area per building per category
-        area_per_building = {}
-        for cat in self.building_categories:
-            cat_area = self.area * (self.building_categories[cat] * footprint_multipliers[cat] / weighted_sum)
-            area_per_building[cat] = cat_area / category_buildings[cat]
+        # Step 3: total buildings
+        #total_buildings = self.population / (self.area / weighted_sum)
+        total_buildings = (self.population * self.area) / weighted_sum
 
-        # Convert all to m² once after the loop
-        area_per_building_m2 = {cat: a * 1_000_000 for cat, a in area_per_building.items()}
-
-
-        # Step 5: average people per building overall
-        avg_people_per_building = self.population / total_buildings
-
-        return {
-            'total_buildings': round(total_buildings),
-            'avg_people_per_building': avg_people_per_building,
-            'category_buildings': {cat: round(num) for cat, num in category_buildings.items()},
-            'area_per_building_m2': area_per_building_m2,
-            'avg_people_per_category': avg_people_per_category
-
-        }
-
-    def exporter(self):
-        results = self.calculate_buildings()
+        # Step 4: distribute across categories
         buildings = []
-        cat_idx=1
-        for cat, count in results["category_buildings"].items():
-            for i in range(count):
+        cat_idx = 1
+        for cat in self.building_categories:
+            fraction = self.building_categories[cat]
+            cat_buildings = round(total_buildings * fraction)
+            
+            # category-specific people and area
+            avg_people = (self.population * fraction) / cat_buildings
+            cat_area = self.area * (fraction * (1 + fraction * 5) / weighted_sum)
+            area_per_building_m2 = (cat_area / cat_buildings) * 1_000_000
+
+            for _ in range(cat_buildings):
                 b = Building(
                     -1, -1, -1, -1,
                     cat_idx,
-                    results["area_per_building_m2"][cat],
-                    results["avg_people_per_category"][cat]
+                    area_per_building_m2,
+                    avg_people
                 )
                 buildings.append(b)
-            cat_idx=cat_idx+1
+
+            cat_idx += 1
 
         return buildings
+
 
 
 

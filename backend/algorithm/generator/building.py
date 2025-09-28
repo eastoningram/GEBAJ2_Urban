@@ -36,15 +36,3 @@ class Building:
             + str(self.size_x) + ", size_y= " + str(self.size_y) \
                 + ", category= " + str(self.category) +", capacity= " + str(self.capacity) \
                     +", area: " + str(self.area))
-
-    def getX(self):
-        return self.x
-
-    def getY(self):
-        return self.y
-
-    def setX(self,x):
-        self.x=x
-
-    def setY(self,y):
-        self.y=y
