@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template, request
+import os
+import cv2
 
 from map import create_map
 
@@ -25,7 +27,10 @@ def generateCity():
     print(population)
     print(area)
 
-    create_map(int(population), int(area))
+    img=create_map(int(population), float(area))
+    filepath = os.path.join("static", "map.png")
+    print(filepath)
+    cv2.imwrite(filepath, img)
     
     
     return("OK")
