@@ -21,7 +21,7 @@ def generateCity():
     area = data["area"]
     print(population)
     print(area)
-    return "OK"
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
