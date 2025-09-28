@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template, request
 
+import algorithm
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -22,6 +24,9 @@ def generateCity():
     area = data["area"]
     print(population)
     print(area)
+
+    create_map(population, area)
+    
     
     return("OK")
     
