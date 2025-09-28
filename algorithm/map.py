@@ -84,10 +84,6 @@ def connect_nearest(buildings):
 
 
 
-
-
-            
-
 # ---- MAIN ----
 if __name__ == "__main__":
     # Set image to white
