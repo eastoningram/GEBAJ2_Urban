@@ -1,15 +1,36 @@
 body {
-    background:  #bad89f;
-    font-family: Arial, sans-serif;
-    font-size: 25px;
     margin: 0;
-    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(216deg, #4ee2f6, #fe6565);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
 }
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:81% 0%}
+    50%{background-position:20% 100%}
+    100%{background-position:81% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:81% 0%}
+    50%{background-position:20% 100%}
+    100%{background-position:81% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:81% 0%}
+    50%{background-position:20% 100%}
+    100%{background-position:81% 0%}
+}
+
 
 .navbar {
     padding: 12px;
     margin-bottom: 15px;
-    background-color: #45a049;
 }
 
 a {
@@ -20,7 +41,11 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+     background: linear-gradient(216deg, #4ee2f6, #fe6565);
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+    transform: scale(1.1) translate(5px, -5px); 
 }
 
 h1 {
@@ -49,14 +74,22 @@ input {
 button {
     display: block;
     padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    background-color: #F8F6F0;
+    color: #000000;
+    border: 1px;
     border-radius: 5px;
     cursor: pointer;
     margin: 35px auto;
+
+    /* Add transition for smooth animation */
+    transition: all .325s ease-in-out;
 }
 
 button:hover {
-    background-color: #45a049;
+    background: linear-gradient(216deg, #4ee2f6, #fe6565);
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+    transform: scale(1.1) translate(5px, -5px); 
 }
+
