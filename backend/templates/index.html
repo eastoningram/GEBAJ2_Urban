@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: flex-start;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        /* Center form */
+        #inputForm {
+            text-align: center;
+            margin-top: 20vh;
+        }
+
+        #mapContainer {
+            display: none; /* hidden until a map is generated */
+            height: calc(100vh - 50px); /* subtract navbar height */
+            width: 100vw;
+            position: relative;
+        }
+
+        #mapContainer img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* keeps aspect ratio */
+            background: #ddd;
+        }
+
+        /* Back button */
+        #backBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        #backBtn:hover {
+            background: rgba(0,0,0,0.9);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="{{ url_for('team') }}">Our Team</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <!-- Input form -->
+    <div id="inputForm">
+        <h1>City Generator</h1>
+        <label>Population: </label>
+        <input type="number" id="population" placeholder="Enter population" required>
+        <br><br>
+        <label>Area (km<sup>2</sup>): </label>
+        <input type="number" step="0.1" id="area" placeholder="Enter area" required>
+        <br><br>
+        <button onclick="generateCity()">Generate City</button>
+    </div>
+
+    <!-- Map view -->
+    <div id="mapContainer">
+        <button id="backBtn" onclick="goBack()">Back to Main Menu</button>
+        <img id="cityMap" src="" alt="Generated Map">
+    </div>
+
+    <script>
+        function generateCity() {
+            const population = document.getElementById("population").value;
+            const area = document.getElementById("area").value;
+
+            fetch("/generateCity", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ population, area })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const img = document.getElementById("cityMap");
+                img.src = data.map_url + "?t=" + new Date().getTime(); // avoid caching
+
+                // hide form, show map
+                document.getElementById("inputForm").style.display = "none";
+                document.getElementById("mapContainer").style.display = "block";
+            });
+        }
+
+        function goBack() {
+            // hide map, show form again
+            document.getElementById("mapContainer").style.display = "none";
+            document.getElementById("inputForm").style.display = "block";
+        }
+    </script>
+</body>
+</html>
