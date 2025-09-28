@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from generator.building import Building
+from building import Building
 
 # class to calculate amount of buildings for the given population
 class TownGenerator: 

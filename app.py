@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from flask import Flask, render_template, request
 
-import algorithm
+from map import create_map
 
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def generateCity():
     print(population)
     print(area)
 
-    create_map(population, area)
+    create_map(int(population), int(area))
     
     
     return("OK")

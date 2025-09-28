@@ -3,7 +3,7 @@
 import numpy as np
 import cv2
 import random
-from generator.generator import TownGenerator
+from generator import TownGenerator
 
 # ---- CONFIG ----
 n_pixel_y = 300
@@ -74,7 +74,7 @@ def connect_nearest(buildings):
             draw_road(c1, nearest)
 
 
-def create_map(population, area)
+def create_map(population, area):
     # Set image to white
     img[:] = [255, 255, 255]
 
