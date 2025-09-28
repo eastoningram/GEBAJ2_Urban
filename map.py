@@ -109,7 +109,7 @@ def create_map(population, area):
     draw_buildings(buildings)
 
     # Save map
-    cv2.imwrite("map.png", img)
+
     print(f"Map saved as 'map.png' with {len(buildings)} buildings.")
 
-    return(img)
+    return img

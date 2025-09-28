@@ -1,10 +1,5 @@
 body {
-<<<<<<< HEAD
-    background: #bad89f;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-=======
->>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
+
     margin: 0;
     height: 100vh;
     font-family: Arial, sans-serif;
@@ -37,11 +32,6 @@ body {
 .navbar {
     padding: 12px;
     margin-bottom: 15px;
-<<<<<<< HEAD
-    background-color: #45a049;
-    text-align: center;
-=======
->>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
 }
 
 a {
@@ -115,7 +105,7 @@ button:hover {
     transform: scale(1.1) translate(5px, -5px); 
 }
 
-<<<<<<< HEAD
+
 #cityMap {
     margin-top: 20px;
     max-width: 100%;
@@ -123,5 +113,4 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
-=======
->>>>>>> 073fd41c41e424e3d86fb26b9abc1b0d2ca19ca2
+
